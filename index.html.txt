@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi flaca 💘</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Arial', sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        position: relative;
+        z-index: 2;
+        max-width: 330px;
+    }
+
+    h1 {
+        color: #ff3b6f;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 17px;
+        color: #333;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 18px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        padding: 12px 26px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background-color: #ff3b6f;
+        color: white;
+    }
+
+    #no {
+        background-color: #aaa;
+        color: white;
+        position: absolute;
+    }
+
+    .heart {
+        position: absolute;
+        color: rgba(255,255,255,0.85);
+        font-size: 20px;
+        animation: float 6s infinite ease-in;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Música -->
+<audio id="music" loop>
+    <source src="https://files.catbox.moe/2k6c9o.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+    <img src="foto.jpg" alt="Nosotros 💖">
+
+    <h1>Flaca 💘</h1>
+    <p>
+        Desde que llegaste a mi vida,<br>
+        todo tiene más color y sentido 🥺✨
+    </p>
+    <p><strong>¿Quieres ser mi San Valentine?</strong></p>
+
+    <button id="yes">Sí 💖</button>
+    <button id="no">No 🙈</button>
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const card = document.getElementById("card");
+    const music = document.getElementById("music");
+
+    // Música al primer toque
+    document.body.addEventListener("click", () => {
+        music.play();
+    }, { once: true });
+
+    // Posición inicial del NO
+    noBtn.style.top = "70%";
+    noBtn.style.left = "55%";
+
+    // NO huye
+    noBtn.addEventListener("click", () => {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 120);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    // SÍ romántico
+    yesBtn.addEventListener("click", () => {
+        card.innerHTML = `
+            <h1>💖 Te amo 💖</h1>
+            <p>
+                Gracias por decir que sí, mi preciosa 🥹✨<br><br>
+                Eres mi flaca hermosa, mis chinitos favoritos,<br>
+                la persona que más amo en esta vida ❤️‍🩹<br><br>
+                Prometo seguir conquistándote<br>
+                todos los días 💘
+            </p>
+        `;
+    });
+
+    // Corazones
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 25 + 10 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
